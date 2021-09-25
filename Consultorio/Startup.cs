@@ -31,7 +31,8 @@ namespace Consultorio
             services.AddControllers();
             services.AddDbContext<ConsultorioContext>(options =>
             {
-                options.UseNpgsql(Configuration.GetConnectionString("Default"));
+                options.UseNpgsql(Configuration.GetConnectionString("Default"),
+                    assembly => assembly.MigrationsAssembly(typeof(ConsultorioContext).Assembly.FullName));
             });
             services.AddSwaggerGen(c =>
             {
