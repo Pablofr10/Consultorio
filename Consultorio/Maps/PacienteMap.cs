@@ -1,7 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Consultorio.Models.Entities;
 using Microsoft.EntityFrameworkCore;
-using Consultorio.Map;
 
 namespace Consultorio.Maps
 {

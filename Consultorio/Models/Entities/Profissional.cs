@@ -6,6 +6,7 @@ namespace Consultorio.Models.Entities
     {
         public string Nome { get; set; }
         public bool Ativo { get; set; }
-        //public List<Consulta> Consultas { get; set; }
+        public List<Consulta> Consultas { get; set; }
+        public virtual List<Especialidade> Especialidades { get; set; }
     }
 }

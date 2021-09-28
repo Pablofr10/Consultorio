@@ -3,7 +3,7 @@ using Consultorio.Models.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace Consultorio.Map
+namespace Consultorio.Maps
 {
     public class BaseMap<T> : IEntityTypeConfiguration<T> where T : Base
     {
