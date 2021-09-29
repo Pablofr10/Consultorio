@@ -13,7 +13,7 @@ namespace Consultorio.Maps
         {
             base.Configure(builder);
             builder.Property(x => x.Nome).HasColumnName("nome").IsRequired();
-            builder.Property(x => x.Ativa).HasColumnName("ativa").HasDefaultValue(true);
+            builder.Property(x => x.Ativa).HasColumnName("ativa");
         }
     }
 }

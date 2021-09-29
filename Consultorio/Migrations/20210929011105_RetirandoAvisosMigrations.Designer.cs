@@ -3,15 +3,17 @@ using System;
 using Consultorio.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace Consultorio.Migrations
 {
     [DbContext(typeof(ConsultorioContext))]
-    partial class ConsultorioContextModelSnapshot : ModelSnapshot
+    [Migration("20210929011105_RetirandoAvisosMigrations")]
+    partial class RetirandoAvisosMigrations
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -126,7 +128,9 @@ namespace Consultorio.Migrations
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
                     b.Property<bool>("Ativo")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("boolean")
+                        .HasDefaultValue(true)
                         .HasColumnName("ativo");
 
                     b.Property<string>("Nome")
@@ -137,23 +141,6 @@ namespace Consultorio.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("tb_profissional");
-                });
-
-            modelBuilder.Entity("Consultorio.Models.Entities.ProfissionalEspecialidade", b =>
-                {
-                    b.Property<int>("EspecialidadeId")
-                        .HasColumnType("integer")
-                        .HasColumnName("id_especialidade");
-
-                    b.Property<int>("ProfissionalId")
-                        .HasColumnType("integer")
-                        .HasColumnName("id_profissional");
-
-                    b.HasKey("EspecialidadeId", "ProfissionalId");
-
-                    b.HasIndex("ProfissionalId");
-
-                    b.ToTable("tb_profissional_especialidade");
                 });
 
             modelBuilder.Entity("Consultorio.Models.Entities.Consulta", b =>
@@ -181,25 +168,6 @@ namespace Consultorio.Migrations
                     b.Navigation("Paciente");
 
                     b.Navigation("Profissional");
-                });
-
-            modelBuilder.Entity("Consultorio.Models.Entities.ProfissionalEspecialidade", b =>
-                {
-                    b.HasOne("Consultorio.Models.Entities.Especialidade", "Especialidade")
-                        .WithMany()
-                        .HasForeignKey("EspecialidadeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Consultorio.Models.Entities.Profissional", "Profissionais")
-                        .WithMany()
-                        .HasForeignKey("ProfissionalId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Especialidade");
-
-                    b.Navigation("Profissionais");
                 });
 
             modelBuilder.Entity("Consultorio.Models.Entities.Especialidade", b =>
