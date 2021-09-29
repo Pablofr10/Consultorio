@@ -8,6 +8,6 @@ namespace Consultorio.Models.Entities
         public string Email { get; set; }
         public string Celular { get; set; }
         public string Cpf { get; set; }
-        public List<Consulta> Consultas { get; set; }
+        //public List<Consulta> Consultas { get; set; }
     }
 }

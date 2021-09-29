@@ -1,5 +1,4 @@
-﻿using Consultorio.Map;
-using Consultorio.Models.Entities;
+﻿using Consultorio.Models.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
