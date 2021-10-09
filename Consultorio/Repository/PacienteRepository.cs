@@ -17,14 +17,16 @@ namespace Consultorio.Repository
         {
             _context = context;
         }
-        public IEnumerable<Paciente> GetPacientes()
+        public async Task<IEnumerable<Paciente>> GetPacientesAsync()
         {
-            return _context.Pacientes.Include(x => x.Consultas).ToList();
+            return await _context.Pacientes
+                         .Include(x => x.Consultas).ToListAsync();
         }
 
-        public Paciente GetPacientesById(int id)
+        public async Task<Paciente> GetPacientesByIdAsync(int id)
         {
-            return _context.Pacientes.Include(x => x.Consultas).Where(x => x.Id == id).FirstOrDefault();
+            return await _context.Pacientes.Include(x => x.Consultas)
+                        .Where(x => x.Id == id).FirstOrDefaultAsync();
         }
     }
 }
