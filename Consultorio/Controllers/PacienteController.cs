@@ -1,4 +1,5 @@
-﻿using Consultorio.Models.Dtos;
+﻿using AutoMapper;
+using Consultorio.Models.Dtos;
 using Consultorio.Models.Entities;
 using Consultorio.Repository.Interfaces;
 using Microsoft.AspNetCore.Mvc;
@@ -14,10 +15,12 @@ namespace Consultorio.Controllers
     public class PacienteController : ControllerBase
     {
         private readonly IPacienteRepository _repository;
+        private readonly IMapper _mapper;
 
-        public PacienteController(IPacienteRepository repository)
+        public PacienteController(IPacienteRepository repository, IMapper mapper)
         {
             _repository = repository;
+            _mapper = mapper;
         }
 
         [HttpGet]
@@ -35,14 +38,9 @@ namespace Consultorio.Controllers
         {
             var paciente = await _repository.GetPacientesByIdAsync(id);
 
-            var pacienteRetorno = new PacienteDetalhesDto
-            {
-                Id = paciente.Id,
-                Nome = paciente.Nome,
-                Celular = paciente.Celular,
-                Email = paciente.Email,
-                Consultas = new List<Consulta>()
-            };
+            var pacienteRetorno = _mapper.Map<PacienteDetalhesDto>(paciente);
+
+            var pacienteTest = _mapper.Map<Paciente>(pacienteRetorno);
 
             return pacienteRetorno != null
                     ? Ok(pacienteRetorno)

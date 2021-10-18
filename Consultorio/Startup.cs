@@ -33,6 +33,7 @@ namespace Consultorio
             services.AddControllers().AddNewtonsoftJson(options => {
                 options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
             });
+            services.AddAutoMapper(typeof(Startup));
             services.AddScoped<IBaseRepository, BaseRepository>();
             services.AddScoped<IPacienteRepository, PacienteRepository>();
             services.AddDbContext<ConsultorioContext>(options =>
