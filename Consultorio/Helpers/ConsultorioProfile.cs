@@ -20,6 +20,8 @@ namespace Consultorio.Helpers
             CreateMap<Consulta, ConsultaDto>()
                 .ForMember(dest => dest.Especialidade, opt => opt.MapFrom(src => src.Especialidade.Nome))
                 .ForMember(dest => dest.Profissional, opt => opt.MapFrom(src => src.Profissional.Nome));
+
+            CreateMap<PacienteAdicionarDto, Paciente>();
         }
     }
 }
