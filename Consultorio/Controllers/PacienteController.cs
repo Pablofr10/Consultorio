@@ -59,5 +59,21 @@ namespace Consultorio.Controllers
                 : BadRequest("Erro ao salvar o paciente");
 
         }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Put(int id, PacienteAtualizarDto paciente)
+        {
+            if (id <= 0) return BadRequest("Usuário não informado");
+
+            var pacienteBanco = await _repository.GetPacientesByIdAsync(id);
+
+            var pacienteAtualizar = _mapper.Map(paciente, pacienteBanco);
+
+            _repository.Update(pacienteAtualizar);
+
+            return await _repository.SaveChangesAsync()
+                 ? Ok("Paciente atualizado com sucesso")
+                 : BadRequest("Erro ao atualizar o paciente");
+        }
     }
 }
